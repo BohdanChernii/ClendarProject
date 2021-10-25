@@ -14,17 +14,6 @@ module.exports = (env, argv) => {
       publicPath: "/",
     },
     module: {
-      exports = {
-        // ...
-        plugins: [
-          // ...
-          new CopyPlugin({
-            patterns: [
-              { from: '_redirects', to: '' },
-            ],
-          }),
-        ],
-      },
       rules: [
         {
           test: /.jsx?$/,
