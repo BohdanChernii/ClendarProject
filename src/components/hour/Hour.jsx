@@ -13,7 +13,7 @@ const Hour = ({ dataHour, hourEvents }) => {
         )}`;
         const eventEnd = `${dateTo.getHours()}:${formatMins(
           dateTo.getMinutes()
-        )}`;
+        )}`
 
         return (
           <Event
