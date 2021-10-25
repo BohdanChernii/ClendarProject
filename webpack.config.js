@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
@@ -13,6 +14,17 @@ module.exports = (env, argv) => {
       publicPath: "/",
     },
     module: {
+      exports = {
+        // ...
+        plugins: [
+          // ...
+          new CopyPlugin({
+            patterns: [
+              { from: '_redirects', to: '' },
+            ],
+          }),
+        ],
+      },
       rules: [
         {
           test: /.jsx?$/,
@@ -28,6 +40,7 @@ module.exports = (env, argv) => {
         }
       ]
     },
+    
     plugins: [
       new webpack.ProgressPlugin(),
       new CleanWebpackPlugin(),
