@@ -32,6 +32,7 @@ export const formatMins = (mins) => {
 
 export const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export const months = [
+
   "January",
   "February",
   "March",
@@ -44,4 +45,5 @@ export const months = [
   "October",
   "November",
   "December",
+
 ];

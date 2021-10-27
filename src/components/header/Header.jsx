@@ -1,11 +1,9 @@
 import React from "react";
-import moment from "moment";
 import { months } from "../../utils/dateUtils.js";
 
 import "./header.scss";
 
-const Header = ({ nextWeek, prevWeek, today, weekDates, show }) => {
-  console.log(weekDates);
+const Header = ({ nextWeek, prevWeek, today, weekDates, showModal }) => {
   let showMonth;
   if (weekDates[0].getMonth() === weekDates[weekDates.length - 1].getMonth()) {
     showMonth = `${months[weekDates[0].getMonth()]}`;
@@ -17,7 +15,7 @@ const Header = ({ nextWeek, prevWeek, today, weekDates, show }) => {
 
   return (
     <header className="header">
-      <button className="button create-event-btn" onClick={show}>
+      <button className="button create-event-btn" onClick={showModal}>
         <i className="fas fa-plus create-event-btn__icon"></i>Create
       </button>
       <div className="navigation">

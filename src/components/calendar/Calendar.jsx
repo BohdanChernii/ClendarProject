@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Navigation from "./../navigation/Navigation";
-import Week from "../week/Week";
+import Week from "../week/Week.jsx";
 import Sidebar from "../sidebar/Sidebar";
 import events from "../../gateway/events";
 

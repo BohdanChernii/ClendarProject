@@ -9,38 +9,41 @@ import "./common.scss";
 
 function App() {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
-  const [showDialog, setShowDialog] = useState(null);
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
-  
-  const show = () =>{
-    setShowDialog(showDialog)
-  }
+  const [isShowModal, setIsShowModal] = useState(null);
 
- const nextWeek = () =>{
+  const hide = () => {
+    setIsShowModal(null);
+  };
+  const showModal = () => {
+    setIsShowModal(true);
+  };
+  const nextWeek = () => {
     setWeekStartDate(
-      new Date(weekStartDate.setDate(new Date(weekStartDate).getDate() +7))
-    )
-  }
+      new Date(weekStartDate.setDate(new Date(weekStartDate).getDate() + 7))
+    );
+  };
 
- const prevWeek = () =>{
+  const prevWeek = () => {
     setWeekStartDate(
-      new Date(weekStartDate.setDate(new Date(weekStartDate).getDate() -7))
-    )
-  }
-  const today = () =>{
-    setWeekStartDate(
-      new Date()
-    )
-  }
+      new Date(weekStartDate.setDate(new Date(weekStartDate).getDate() - 7))
+    );
+  };
+  const today = () => {
+    setWeekStartDate(new Date());
+  };
+
   return (
     <>
-      <Header nextWeek={nextWeek} 
-      prevWeek={prevWeek} 
-      today={today}
-      weekDates={weekDates}
-      show={show}/>
+      <Header
+        nextWeek={nextWeek}
+        prevWeek={prevWeek}
+        today={today}
+        weekDates={weekDates}
+        showModal={showModal}
+      />
       <Calendar weekDates={weekDates} />
-      <Modal />
+      {isShowModal && <Modal hideModal={hide} />}
     </>
   );
 }
