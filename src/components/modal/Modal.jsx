@@ -1,13 +1,20 @@
-import React from "react";
-
+import React,{useState} from "react";
 import "./modal.scss";
 
 function Modal () {
+  const [hide, setHide] = useState(false);
+
+  const hideModal = () =>{
+    setHide(null);
+  }
+  if(hide === null){
+    return null;
+  }
     return (
       <div className="modal overlay">
         <div className="modal__content">
           <div className="create-event">
-            <button className="create-event__close-btn">+</button>
+            <button className="create-event__close-btn" onClick={hideModal}>+</button>
             <form className="event-form">
               <input
                 type="text"
@@ -21,7 +28,7 @@ function Modal () {
                   type="time"
                   name="startTime"
                   className="event-form__field"
-                  onChange={this.handleChange}
+                  // onChange={this.handleChange}
                 />
                 <span>-</span>
                 <input
