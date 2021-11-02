@@ -3,7 +3,7 @@ import Hour from "../hour/Hour";
 import RedLine from "./RedLine";
 import "./day.scss";
 
-const Day = ({ dataDay, dayEvents, isCurrentDay }) => {
+const Day = ({ dataDay, dayEvents, isCurrentDay, deleteEvent }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
@@ -16,7 +16,12 @@ const Day = ({ dataDay, dayEvents, isCurrentDay }) => {
           (event) => event.dateFrom.getHours() === hour
         );
         return (
-          <Hour key={dataDay + hour} dataHour={hour} hourEvents={hourEvents} />
+          <Hour
+            key={dataDay + hour}
+            dataHour={hour}
+            hourEvents={hourEvents}
+            deleteEvent={deleteEvent}
+          />
         );
       })}
       {isCurrentDay && <RedLine />}

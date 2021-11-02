@@ -7,7 +7,7 @@ import Sidebar from "../sidebar/Sidebar";
 
 import "./calendar.scss";
 
-function Calendar({ weekDates, list }) {
+function Calendar({ weekDates, list, deleteEvent }) {
   // const [event, setEvent] = useState(events);
   return (
     <section className="calendar">
@@ -15,7 +15,7 @@ function Calendar({ weekDates, list }) {
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />
-          <Week weekDates={weekDates} events={list} />
+          <Week weekDates={weekDates} events={list} deleteEvent={deleteEvent} />
         </div>
       </div>
     </section>

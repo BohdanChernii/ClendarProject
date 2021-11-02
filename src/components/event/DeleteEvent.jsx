@@ -1,6 +1,10 @@
 import React from "react";
 
-const DeleteEvent = () => {
-  return <div className="delete-event-btn">Delete Event ?!</div>;
+const DeleteEvent = ({ deleteEvent, id }) => {
+  return (
+    <div className="delete-event-btn" onClick={() => deleteEvent(id)}>
+      Delete Event ?!
+    </div>
+  );
 };
 export default DeleteEvent;

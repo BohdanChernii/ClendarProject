@@ -3,7 +3,7 @@ import Day from "../day/Day";
 
 import "./week.scss";
 
-const Week = ({ weekDates, events }) => {
+const Week = ({ weekDates, events, deleteEvent }) => {
   return (
     <div className="calendar__week">
       {weekDates.map((dayStart) => {
@@ -21,6 +21,7 @@ const Week = ({ weekDates, events }) => {
             dataDay={dayStart.getDate()}
             dayEvents={dayEvents}
             isCurrentDay={isCurrentDay}
+            deleteEvent={deleteEvent}
           />
         );
       })}

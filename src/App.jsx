@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import Header from "./components/header/Header.jsx";
 import Calendar from "./components/calendar/Calendar.jsx";
 import Modal from "./components/modal/Modal.jsx";
-import events from "./gateway/events.js";
+
+import {
+  fetchCreate,
+  fetchDelete,
+  fetchEvents,
+} from "./gateway/eventsGateway.js";
 import { getWeekStartDate, generateWeekRange } from "../src/utils/dateUtils.js";
 import "./common.scss";
-
 function App() {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
   const [isShowModal, setIsShowModal] = useState(false);
-  const [eventList, setEventList] = useState(events);
+  const [eventList, setEventList] = useState([]);
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
 
   const toggleModal = (e) => {
-    const target = e.target;
+    const { target } = e;
     if (
       target.classList.contains("create-event-btn") ||
       target.classList.contains("create-event__close-btn") ||
@@ -41,17 +45,35 @@ function App() {
     setWeekStartDate(new Date());
   };
 
+  const getEvent = () =>
+    fetchEvents().then((events) => {
+      const updatedList = events.map((event) => ({
+        ...event,
+        dateFrom: new Date(event.dateFrom),
+        dateTo: new Date(event.dateTo),
+      }));
+      setEventList(updatedList);
+    });
+
   const createEvent = (e, eventData) => {
     e.preventDefault();
     const { title, description, date, startTime, endTime } = eventData;
     const newEvent = {
-      id: Math.random(),
+      // id: Math.random(),
       title,
       description,
       dateFrom: new Date(`${date} ${startTime}`),
       dateTo: new Date(`${date} ${endTime}`),
     };
-    setEventList([...eventList, newEvent]);
+    // setEventList([...eventList, newEvent]);
+    console.log(newEvent);
+    fetchCreate(newEvent).then(() => getEvent());
+  };
+
+  const deleteEvent = (id) => {
+    // const updatedList = eventList.filter((event) => event.id !== id);
+    // setEventList(updatedList);
+    fetchDelete(id).then(() => getEvent());
   };
 
   return (
@@ -68,7 +90,11 @@ function App() {
         <Modal hideModal={toggleModal} createEvent={createEvent} />
       )}
 
-      <Calendar weekDates={weekDates} list={eventList} />
+      <Calendar
+        weekDates={weekDates}
+        list={eventList}
+        deleteEvent={deleteEvent}
+      />
     </>
   );
 }
