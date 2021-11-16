@@ -59,20 +59,16 @@ function App() {
     e.preventDefault();
     const { title, description, date, startTime, endTime } = eventData;
     const newEvent = {
-      // id: Math.random(),
       title,
       description,
       dateFrom: new Date(`${date} ${startTime}`),
       dateTo: new Date(`${date} ${endTime}`),
     };
-    // setEventList([...eventList, newEvent]);
-    console.log(newEvent);
+
     fetchCreate(newEvent).then(() => getEvent());
   };
 
   const deleteEvent = (id) => {
-    // const updatedList = eventList.filter((event) => event.id !== id);
-    // setEventList(updatedList);
     fetchDelete(id).then(() => getEvent());
   };
 

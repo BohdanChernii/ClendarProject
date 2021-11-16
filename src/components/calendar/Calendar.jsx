@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Navigation from "./../navigation/Navigation";
 import Week from "../week/Week.jsx";
 import Sidebar from "../sidebar/Sidebar";
-// import events from "../../gateway/events";
 
 import "./calendar.scss";
 
 function Calendar({ weekDates, list, deleteEvent }) {
-  // const [event, setEvent] = useState(events);
   return (
     <section className="calendar">
       <Navigation weekDates={weekDates} />
