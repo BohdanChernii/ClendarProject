@@ -16,16 +16,8 @@ function App() {
   const [eventList, setEventList] = useState([]);
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
 
-  const toggleModal = (e) => {
-    const { target } = e;
-    if (
-      target.classList.contains("create-event-btn") ||
-      target.classList.contains("create-event__close-btn") ||
-      target.classList.contains("overlay") ||
-      target.classList.contains("event-form")
-    ) {
-      setIsShowModal(!isShowModal);
-    }
+  const toggleModal = () => {
+    setIsShowModal(!isShowModal);
   };
   const showModal = () => {
     setIsShowModal(true);
