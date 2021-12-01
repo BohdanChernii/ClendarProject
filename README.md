@@ -2,12 +2,12 @@
 
 ## Stack
 
-HTML
+- HTML
 
-CSS
+- CSS
 
-BEM methodology
+- BEM methodology
 
-JS
+- JS
 
-REACT
+- REACT
